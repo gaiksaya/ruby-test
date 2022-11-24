@@ -1,0 +1,31 @@
+lib = library(identifier: 'jenkins@ruby-gems', retriever: modernSCM([
+    $class: 'GitSCMSource',
+    remote: 'https://github.com/gaiksaya/opensearch-build-libraries-1.git',
+]))
+
+pipeline {
+    agent
+    {
+        docker {
+            label 'Jenkins-Agent-AL2-X64-C54xlarge-Docker-Host'
+            image 'opensearchstaging/ci-runner:release-centos7-clients-v1'
+            alwaysPull true
+        }
+    }
+    stages {
+        stage('Release') {
+            steps {
+                script {
+                    publishToRubyGems(credentialId: 'ruby-api')
+                }
+            }
+        }
+    }
+    post {
+        always {
+            script {
+                postCleanup()
+            }
+        }
+    }
+}
