@@ -16,7 +16,7 @@ pipeline {
         stage('Release') {
             steps {
                 script {
-                    publishToRubyGems(apiKey: 'ruby-api', gemsDir: 'test')
+                    publishToRubyGems(apiKey: 'ruby-api', gemsDir: 'rubyGems')
                 }
             }
         }
