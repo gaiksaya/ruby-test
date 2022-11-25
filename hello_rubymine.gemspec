@@ -8,4 +8,6 @@ Gem::Specification.new do |s|
   s.email       = 'gaiksaya@amazon.com'
   s.homepage    = 'https://rubygems.org/gems/example'
   s.metadata    = { "source_code_uri" => "https://github.com/" }
+  s.signing_key = "gem-private_key.pem"
+  s.cert_chain  = ['sayali-rubygems.pem']
 end
