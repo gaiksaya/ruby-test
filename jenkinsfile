@@ -16,7 +16,7 @@ pipeline {
         stage('Release') {
             steps {
                 script {
-                    publishToRubyGems(apiKey: 'ruby-api', gemsDir: 'rubyGems')
+                    publishToRubyGems(apiKey: 'ruby-api', gemsDir: 'rubyGems', publicCertPath: 'sayali-rubygems.pem')
                 }
             }
         }
