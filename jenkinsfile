@@ -1,31 +1,12 @@
-lib = library(identifier: 'jenkins@ruby-gems', retriever: modernSCM([
+lib = library(identifier: 'jenkins@main', retriever: modernSCM([
     $class: 'GitSCMSource',
-    remote: 'https://github.com/gaiksaya/opensearch-build-libraries-1.git',
+    remote: 'https://github.com/opensearch-project/opensearch-build-libraries.git',
 ]))
 
-pipeline {
-    agent
-    {
-        docker {
-            label 'Jenkins-Agent-AL2-X64-C54xlarge-Docker-Host'
-            image 'opensearchstaging/ci-runner:release-centos7-clients-v1'
-            alwaysPull true
-        }
+standardReleasePipelineWithGenericTrigger(
+    tokenIdCredential: 'jenkins-opensearch-ruby-generic-webhook-token',
+    causeString: 'A tag was cut on opensearch-project/opensearch-ruby repository causing this workflow to run',
+    downloadReleaseAsset: true,
+    publishRelease: true) {
+        publishToRubyGems(apiKeyCredentialId: 'ruby-api')
     }
-    stages {
-        stage('Release') {
-            steps {
-                script {
-                    publishToRubyGems(apiKey: 'ruby-api', gemsDir: 'rubyGems', publicCertPath: 'sayali-rubygems.pem')
-                }
-            }
-        }
-    }
-    post {
-        always {
-            script {
-                postCleanup()
-            }
-        }
-    }
-}
