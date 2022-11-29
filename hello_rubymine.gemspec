@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'hello_world_sayali'
-  s.version     = '0.2.10'
+  s.version     = '0.2.11'
   s.licenses    = ['MIT']
   s.summary     = "This is an example!"
   s.description = "Much longer explanation of the example!"
