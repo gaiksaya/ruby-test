@@ -1,6 +1,6 @@
-lib = library(identifier: 'jenkins@main', retriever: modernSCM([
+lib = library(identifier: 'jenkins@fix-verification', retriever: modernSCM([
     $class: 'GitSCMSource',
-    remote: 'https://github.com/opensearch-project/opensearch-build-libraries.git',
+    remote: 'https://github.com/gaiksaya/opensearch-build-libraries-1.git',
 ]))
 
 standardReleasePipelineWithGenericTrigger(
@@ -8,5 +8,5 @@ standardReleasePipelineWithGenericTrigger(
     causeString: 'A tag was cut on opensearch-project/opensearch-ruby repository causing this workflow to run',
     downloadReleaseAsset: true,
     publishRelease: true) {
-        publishToRubyGems(apiKeyCredentialId: 'ruby-api', publicCertPath: "${WORKSPACE}/sayali-rubygems.pem")
+        publishToRubyGems(apiKeyCredentialId: 'ruby-api', publicCertPath: 'sayali-rubygems.pem')
     }
