@@ -8,5 +8,5 @@ standardReleasePipelineWithGenericTrigger(
     causeString: 'A tag was cut on opensearch-project/opensearch-ruby repository causing this workflow to run',
     downloadReleaseAsset: true,
     publishRelease: true) {
-        publishToRubyGems(apiKeyCredentialId: 'ruby-api', publicCertPath: "${WORKSPACE}/sayali-rubygems.pem")
+        publishToRubyGems(apiKeyCredentialId: 'ruby-api', publicCertPath: 'sayali-rubygems.pem')
     }
